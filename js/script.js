@@ -8,7 +8,7 @@ const inputTime = document.getElementById("input-time");
 
 const cardReminders = document.getElementById("card-reminders");
 
-const mensagem = [
+const message = [
   {
     id: 1,
     data: 10,
@@ -18,10 +18,17 @@ const mensagem = [
 ];
 
 formAddReminder.addEventListener("submit", (e) => {
-  e.preventDefault();
+  const id = message.length++;
 
-  const messageValue = inputMessage.value;
-  const timeValue = inputTime.value;
+  const values = {
+    id: id,
+    data: displayData.innerText,
+    mensagem: inputMessage.value,
+    hora: inputMessage.value,
+  };
+
+  console.log(values);
+  e.preventDefault();
 });
 
 const data = new Date();
