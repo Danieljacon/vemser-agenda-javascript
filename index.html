@@ -48,7 +48,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Fechar</button>
-                                            <input type="submit" class="btn btn-primary" value="Adicionar">
+                                            <input type="submit" class="btn btn-primary" value="Adicionar" data-bs-dismiss="modal">
                                         </div>
                                     </form>
 
@@ -61,8 +61,10 @@
             </section>
             <section>
                 <div id="card-reminders"
-                    class="bg-white rounded-3 p-3 px-5 my-2 text-dark d-flex justify-content-between align-items-center">
-                    <p class="text-center m-0">Nenhum lembrete cadastrado ainda</p>
+                    class="d-flex flex-column align-items-center">
+                    <div class="bg-white rounded-3 p-3 px-5 mt-2 text-dark w-100 d-flex justify-content-between">
+                        <p class="m-0">Nenhum cadastrado ainda</p>
+                    </div>
                 </div>
             </section>
         </div>
