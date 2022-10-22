@@ -8,26 +8,20 @@ const inputTime = document.getElementById("input-time");
 
 const cardReminders = document.getElementById("card-reminders");
 
-const message = [
-  {
-    id: 1,
-    data: 10,
-    mensagem: "",
-    hora: "",
-  },
-];
+const message = [];
 
 formAddReminder.addEventListener("submit", (e) => {
-  const id = message.length++;
+  const id = message.length + 1;
 
   const values = {
     id: id,
     data: displayData.innerText,
     mensagem: inputMessage.value,
-    hora: inputMessage.value,
+    hora: inputTime.value,
   };
 
-  console.log(values);
+  message.push(values);
+  messageInnerHtml();
   e.preventDefault();
 });
 
@@ -37,6 +31,29 @@ let year = data.getFullYear();
 let newDate = `${month}, ${year}`;
 displayData.innerText = newDate;
 
+const messageInnerHtml = () => {
+  cardReminders.innerHTML = "";
+
+  message.forEach((item) => {
+    if (item.data.split(", ")[0] == parseInt(displayData.innerText)) {
+      cardReminders.innerHTML += `
+        <div class="bg-white rounded-3 p-3 px-5 mt-2 text-dark w-100 d-flex justify-content-between">
+            <h2 class="h5 m-0">${item.mensagem}</h2>
+            <p class="m-0">${item.hora}</p>
+        </div>
+        `;
+    }
+  });
+
+  cardReminders.innerText == "" &&
+    (cardReminders.innerHTML = `
+        <div class="bg-white rounded-3 p-3 px-5 mt-2 text-dark w-100 d-flex justify-content-center">
+            <p class="m-0">Nenhum cadastrado ainda</p>
+        </div>
+  `);
+};
+
+messageInnerHtml();
 btnNext.addEventListener("click", () => {
   month++;
   if (month > 12) {
@@ -44,6 +61,7 @@ btnNext.addEventListener("click", () => {
     month = 1;
   }
   displayData.innerText = `${month}, ${year}`;
+  messageInnerHtml();
 });
 
 btnPrevious.addEventListener("click", () => {
@@ -53,6 +71,5 @@ btnPrevious.addEventListener("click", () => {
     month = 12;
   }
   displayData.innerText = `${month}, ${year}`;
+  messageInnerHtml();
 });
-
-// innerText.split(",")[0]
