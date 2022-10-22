@@ -12,8 +12,14 @@ const message = [
   {
     id: 1,
     data: 10,
-    mensagem: "",
-    hora: "",
+    mensagem: "asdfdfsdfgdsasdf",
+    hora: "asdfasdfas",
+  },
+  {
+    id: 1,
+    data: 9,
+    mensagem: "aaaaaaaaaaa",
+    hora: "sssssssssss",
   },
 ];
 
@@ -37,6 +43,20 @@ let year = data.getFullYear();
 let newDate = `${month}, ${year}`;
 displayData.innerText = newDate;
 
+const messageInnerHtml = () => {
+  message.forEach((item) => {
+    if (item.data == parseInt(displayData.innerText)) {
+      cardReminders.innerHTML = `
+            <h2 class="h5 m-0">${item.mensagem}</h2>
+            <p class="m-0">${item.hora}</p>
+        `;
+    } else {
+        cardReminders.innerHTML = `
+        <p class="text-center m-0">Nenhum lembrete cadastrado ainda</p>`;
+    }
+  });
+};
+
 btnNext.addEventListener("click", () => {
   month++;
   if (month > 12) {
@@ -44,6 +64,7 @@ btnNext.addEventListener("click", () => {
     month = 1;
   }
   displayData.innerText = `${month}, ${year}`;
+  messageInnerHtml();
 });
 
 btnPrevious.addEventListener("click", () => {
@@ -53,6 +74,7 @@ btnPrevious.addEventListener("click", () => {
     month = 12;
   }
   displayData.innerText = `${month}, ${year}`;
+  messageInnerHtml();
 });
 
 // innerText.split(",")[0]
