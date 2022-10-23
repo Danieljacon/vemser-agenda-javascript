@@ -8,7 +8,8 @@ const inputTime = document.getElementById("input-time");
 
 const cardReminders = document.getElementById("card-reminders");
 
-const message = [];
+let message = [];
+
 
 formAddReminder.addEventListener("submit", (e) => {
   const id = message.length + 1;
@@ -34,7 +35,9 @@ displayData.innerText = newDate;
 const messageInnerHtml = () => {
   cardReminders.innerHTML = "";
 
-  message.forEach((item) => {
+  message
+  .sort((a, b) => a.hora.replace(":","") - b.hora.replace(":",""))
+  .map((item) => {
     if (item.data.split(", ")[0] == parseInt(displayData.innerText)) {
       cardReminders.innerHTML += `
         <div class="bg-white rounded-3 p-3 px-5 mt-2 text-dark w-100 d-flex justify-content-between">
@@ -42,7 +45,7 @@ const messageInnerHtml = () => {
             <p class="m-0">${item.hora}</p>
         </div>
         `;
-    }
+    } 
   });
 
   cardReminders.innerText == "" &&
