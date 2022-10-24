@@ -23,6 +23,9 @@ formAddReminder.addEventListener("submit", (e) => {
 
   message.push(values);
   messageInnerHtml();
+
+  inputMessage.value = "";
+  inputTime.value = "";
   e.preventDefault();
 });
 
@@ -45,7 +48,7 @@ const messageInnerHtml = () => {
             <p class="m-0">${item.hora}</p>
         </div>
         `;
-    } 
+    }
   });
 
   cardReminders.innerText == "" &&
